@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPSA IT Department</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --navy: #14213D; --navy-deep: #0C1730; --gold: #D4AF37;
+  --cream: #FAF7F0; --magenta: #8E1F5C; --ink: #262B3A; --slate: #5B6270; --line: #E4DFD3;
+}
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.55; }
+h1,h2,h3{ font-family:'Fraunces',serif; color:var(--navy); margin:0 0 .5em; letter-spacing:-0.01em; }
+a{ color:inherit; } img{ max-width:100%; display:block; }
+.eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--magenta); }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+.utility-strip{ background:var(--navy-deep); color:#C9CFDD; font-family:'IBM Plex Mono',monospace; font-size:.72rem; }
+.utility-strip .wrap{ display:flex; justify-content:space-between; align-items:center; padding:7px 32px; }
+.utility-strip a{ color:#C9CFDD; text-decoration:none; margin-left:16px; }
+
+header.site-header{ background:var(--navy); border-bottom:3px solid var(--gold); position:sticky; top:0; z-index:10; }
+.header-row{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; gap:24px; flex-wrap:wrap; }
+.brand{ display:flex; align-items:center; gap:14px; text-decoration:none; }
+.crest{ width:44px; height:44px; background:linear-gradient(160deg,var(--gold),#9c7d1f);
+  clip-path:polygon(50% 0%,100% 20%,100% 65%,50% 100%,0% 65%,0% 20%);
+  display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; color:var(--navy-deep); flex:none; }
+.brand-text .school{ color:#fff; font-family:'Fraunces',serif; font-weight:700; font-size:1.05rem; }
+.brand-text .dept{ color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+nav.primary-nav ul{ list-style:none; display:flex; gap:4px; margin:0; padding:0; flex-wrap:wrap; }
+nav.primary-nav a{ display:block; color:#E9EAF0; text-decoration:none; font-size:.92rem; font-weight:500; padding:10px 16px; border-radius:2px; }
+nav.primary-nav a:hover{ color:var(--gold); }
+nav.primary-nav a.active{ color:var(--navy-deep); background:var(--gold); font-weight:600; }
+
+/* Custom Hero Styles */
+.hero-overlay {
+  position: relative;
+  background: linear-gradient(rgba(12, 23, 48, 0.75), rgba(12, 23, 48, 0.75)), 
+              url('student learning.jpg') center/cover no-repeat;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 60px 20px;
+}
+
+.hero-content {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content h1 {
+  color: #FFC72C;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.hero-content p.lead {
+  color: #ffffff;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 680px;
+  margin: 0 0 28px 0;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.btn-yellow {
+  background-color: #FFC72C;
+  color: #14213D;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  border: none;
+}
+
+.btn-yellow:hover {
+  background-color: #e5b225;
+  transform: translateY(-2px);
+}
+
+.btn{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:.92rem; padding:13px 22px; text-decoration:none; border-radius:2px; border:1.5px solid transparent; cursor:pointer; }
+.btn-primary{ background:var(--navy); color:#fff; }
+.btn-primary:hover{ background:var(--navy-deep); }
+.btn-outline{ border-color:var(--navy); color:var(--navy); background:transparent; }
+.btn-outline:hover{ background:var(--navy); color:#fff; }
+
+section{ padding:64px 0; scroll-margin-top:90px; }
+section.alt{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:32px; flex-wrap:wrap; }
+.section-head h2{ font-size:1.6rem; margin:6px 0 0; }
+
+.card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.card{ background:#fff; border:1px solid var(--line); padding:24px; }
+.card .icon{ width:36px; height:36px; background:var(--navy); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; margin-bottom:14px; }
+.card h3{ font-size:1.05rem; margin-bottom:8px; }
+.card p{ color:var(--slate); font-size:.92rem; margin:0; }
+
+.form-shell{ background:#fff; border:1px solid var(--line); max-width:460px; margin:0 auto; padding:36px; }
+.form-shell.wide{ max-width:620px; margin:0; }
+label{ display:block; font-size:.82rem; font-weight:600; color:var(--navy); margin:16px 0 6px; }
+label:first-of-type{ margin-top:0; }
+input, textarea, select{ width:100%; padding:12px 14px; font-family:'Inter'; font-size:.94rem; border:1.5px solid var(--line); background:var(--cream); color:var(--ink); }
+input:focus, textarea:focus, select:focus{ border-color:var(--navy); background:#fff; outline:none; }
+textarea{ resize:vertical; min-height:100px; }
+.form-row-inline{ display:flex; align-items:center; gap:8px; margin-top:14px; font-size:.85rem; color:var(--slate); }
+.form-row-inline input{ width:auto; }
+.form-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:22px; flex-wrap:wrap; gap:10px; }
+.form-foot a{ font-size:.85rem; color:var(--magenta); text-decoration:none; }
+.helper{ text-align:center; color:var(--slate); font-size:.85rem; margin-top:18px; }
+
+.news-list{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
+.news-item{ display:grid; grid-template-columns:110px 1fr; gap:24px; padding:24px 0; border-bottom:1px solid var(--line); }
+.news-date{ font-family:'IBM Plex Mono',monospace; color:var(--magenta); font-size:.82rem; }
+.news-item h3{ font-size:1.1rem; margin-bottom:6px; }
+.news-item p{ color:var(--slate); margin:0 0 8px; font-size:.92rem; }
+.tag{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); background:var(--cream); border:1px solid var(--line); padding:3px 8px; margin-right:6px; }
+
+.gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.gallery-grid figure{ margin:0; overflow:hidden; position:relative; }
+.gallery-grid img{ width:100%; height:170px; object-fit:cover; }
+.gallery-grid figcaption{ position:absolute; left:0; right:0; bottom:0; background:linear-gradient(0deg,rgba(12,23,48,.88),transparent); color:#fff; font-size:.74rem; padding:20px 10px 8px; font-family:'IBM Plex Mono',monospace; }
+.gallery-grid .tall{ grid-row:span 2; }
+.gallery-grid .tall img{ height:100%; min-height:352px; }
+
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; }
+.info-line{ display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line); }
+.info-line .k{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--magenta); width:80px; flex:none; }
+.info-line .v{ font-size:.94rem; }
+
+footer.site-footer{ background:var(--navy-deep); color:#B9C0D3; padding:40px 0 22px; }
+.footer-bottom{ border-top:1px solid rgba(255,255,255,.12); margin-top:26px; padding-top:16px; font-size:.78rem; color:#8791A8; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+@media (max-width:880px){
+  .card-grid{ grid-template-columns:1fr 1fr; }
+  .contact-grid{ grid-template-columns:1fr; }
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+  .gallery-grid .tall img{ min-height:170px; }
+}
+@media (max-width:560px){
+  .card-grid{ grid-template-columns:1fr; }
+  .news-item{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="utility-strip">
+  <div class="wrap">
+    <span>University of Professional Studies, Accra</span>
+    <span><a href="#contact">Directory</a><a href="#login">Portal Login</a></span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="#home" class="brand">
+      <<img src="Upsa logo.jpg" alt="UPSA Logo" style="height: 44px; width: auto; object-fit: contain;">
+      <span class="brand-text">
+        <span class="school">UPSA</span><br>
+        <span class="dept">Dept. of Information Technology</span>
+      </span>
+    </a>
+    <nav class="primary-nav">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero-overlay">
+  <div class="wrap hero-content">
+    <h1>UPSA IT Department</h1>
+    <p class="lead">Nurturing young minds through academic excellence, character development, and a modern learning environment.</p>
+    <a href="#contact" class="btn-yellow">Enroll Today</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">What we teach</span>
+        <h2>Programmes &amp; focus areas</h2>
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">Sw</div>
+        <h3>Software Engineering</h3>
+        <p>Design, build, and ship production-grade applications across web, mobile, and cloud platforms.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Nw</div>
+        <h3>Networking &amp; Security</h3>
+        <p>Infrastructure design, systems administration, and cybersecurity fundamentals.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Ds</div>
+        <h3>Data &amp; Information Systems</h3>
+        <p>Database design, analytics, and the information systems that keep organisations running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="login" class="alt">
+  <div class="wrap">
+    <div class="section-head" style="justify-content:center; text-align:center; flex-direction:column;">
+      <span class="eyebrow">Student &amp; Staff Portal</span>
+      <h2>Sign in to your account</h2>
+    </div>
+    <form class="form-shell" onsubmit="event.preventDefault(); document.getElementById('loginNote').style.display='block';">
+      <label for="userid">Student / Staff ID</label>
+      <input type="text" id="userid" placeholder="e.g. UPSA/IT/2024/0142" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required minlength="6">
+      <div class="form-row-inline">
+        <input type="checkbox" id="remember">
+        <label for="remember" style="margin:0; font-weight:400; color:var(--slate);">Keep me signed in</label>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:20px;">Sign In</button>
+      <div class="form-foot">
+        <a href="#">Forgot password?</a>
+        <a href="#contact">Need help?</a>
+      </div>
+      <p id="loginNote" style="display:none; font-size:.85rem; color:var(--magenta); margin-top:14px;">Demo form only — this doesn't connect to a real server.</p>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get in touch</span>
+    <h2 style="margin-bottom:32px;">Contact the department</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="info-line"><div class="k">Address</div><div class="v">IT Block, UPSA Campus, 78 Okponglo, Legon East, Accra, Ghana</div></div>
+        <div class="info-line"><div class="k">Phone</div><div class="v">+233 302 000 000</div></div>
+        <div class="info-line"><div class="k">Email</div><div class="v">it@upsa.edu.gh</div></div>
+        <div class="info-line"><div class="k">Hours</div><div class="v">Mon – Fri, 8:00 AM – 5:00 PM</div></div>
+      </div>
+      <form class="form-shell wide" onsubmit="event.preventDefault(); document.getElementById('contactNote').style.display='block';">
+        <label for="name">Full name</label>
+        <input type="text" id="name" placeholder="Your full name" required>
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option>General enquiry</option>
+          <option>Admissions</option>
+          <option>Technical support</option>
+        </select>
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="How can we help?" required></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:20px;">Send message</button>
+        <p id="contactNote" style="display:none; font-size:.85rem; color:var(--magenta); margin-top:14px;">Demo form only — your message wasn't actually sent.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="news" class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Announcements &amp; updates</span>
+    <h2 style="margin-bottom:28px;">Department news</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">08 AUG<br>2026</div>
+        <div><span class="tag">Academic Calendar</span><h3>First semester registration opens Monday</h3><p>Continuing and new students can register for the 2026/2027 first semester via the student portal from 8:00 AM.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">02 AUG<br>2026</div>
+        <div><span class="tag">Events</span><h3>Departmental Hackathon — call for teams</h3><p>Teams of up to four students can register for this year's 24-hour build challenge, hosted in the IT labs.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">27 JUL<br>2026</div>
+        <div><span class="tag">Careers</span><h3>Internship placements for final-year students</h3><p>Five local tech firms will host final-year students in three-month internships beginning September.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">14 JUL<br>2026</div>
+        <div><span class="tag">Facilities</span><h3>Lab 3 upgraded with new workstations</h3><p>Lab 3 has been refitted with 40 new workstations and gigabit networking ahead of the new semester.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <span class="eyebrow">Campus life</span>
+    <h2 style="margin-bottom:28px;">Gallery</h2>
+    <div class="gallery-grid">
+      <figure class="tall"><img src="student working in the lab.jpg" alt="Students working in the computer lab"><figcaption>Lab 3 — Systems Engineering</figcaption></figure>
+      <figure><img src="student learning.jpg" alt="Lecture hall"><figcaption>Lecture Hall B</figcaption></figure>
+      <figure><img src="upsa graduation picture.jpg" alt="Graduation ceremony"><figcaption>Graduation, 2025</figcaption></figure>
+      <figure><img src="UPSA MATRICULATION.jpg" alt="UPSA MATRICULATION"><figcaption>Annual Hackathon</figcaption></figure>
+      <figure><img src="UPSA campus building.jpg" alt="Campus building"><figcaption>IT Block Entrance</figcaption></figure>
+      <figure><img src="UPSA CLASSROOMS.jpg" alt="CLASSROOMS"><figcaption>Networking Lab</figcaption></figure>
+      <figure><img src="upsa-school-image.webp" alt="UPSA AUDITHORIUOM"><figcaption>Final-Year Project Day</figcaption></figure>
+      <figure><img src="92bb9e22112b6d777debcec16cddbac7.jpg" alt="UPSA HOSTEL"><figcaption>IT Careers Fair</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>UPSA — Dept. of Information Technology · 78 Okponglo, Legon East, Accra, Ghana</p>
+    <div class="footer-bottom">
+      <span>&copy; 2026 University of Professional Studies, Accra — IT Department.</span>
+      <span>Built for TRY QUESTION coursework.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
